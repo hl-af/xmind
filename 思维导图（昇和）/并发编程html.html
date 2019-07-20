@@ -1,0 +1,40 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="text/css" http-equiv="Content-Style-Type">
+<title>并发编程</title>
+</head>
+<body>
+<h1 align="center" class="root">
+<a name="4ih54f3f7lhcirf0ic919il9vo">并发编程</a>
+</h1>
+<h2 class="topic">
+<a name="70ojaqd9ji2thqffb1j2v678kj">ReentrantLock的实现原理</a>
+</h2>
+<h3 class="topic">
+<a name="7vjrfd8ig1fmkn019qpkb8kc0k">&nbsp;重进入</a>
+</h3>
+<h3 class="topic">
+<a name="0jmh6gf5h0tevbui8sjhlm01is">&nbsp;&nbsp;线程再次获取锁</a>
+</h3>
+<h3 class="topic">
+<a name="28i9rk62n09nprm1vggnldb5gg">&nbsp;&nbsp;&nbsp;通过判断当前线程是否为获取锁的线程来决定获取操作是否成功，如果是获取锁的线程再次请求，则将同步状态值进行增加并返回true，表示获取同步状态成功</a>
+</h3>
+<h3 class="topic">
+<a name="03he4qfotaca35e82tiejrv85s">&nbsp;&nbsp;锁的最终释放</a>
+</h3>
+<h3 class="topic">
+<a name="2qsdrk2up1jdmucfv2gmeekdtc">&nbsp;&nbsp;&nbsp;如果该锁被获取了n次，那么前(n-1)次tryRelease(int releases)方法必须返回false，而只有同步状态完全释放了，才能返回true。可以看到，该方法将同步状态是否为0作为最终释放的条件，当同步状态为0时，将占有线程设置为null，并返回true，表示释放成功。</a>
+</h3>
+<h3 class="topic">
+<a name="662utfhrt4160f9ahh0josjfmr">&nbsp;公平性</a>
+</h3>
+<h3 class="topic">
+<a name="0n4vdju0jp31il516dnhukblgd">&nbsp;&nbsp;针对获取锁</a>
+</h3>
+<h3 class="topic">
+<a name="57337rgg50eopn5o6p0u66p78o">&nbsp;&nbsp;&nbsp;即加入了同步队列中当前节点是否有前驱节点的判断，如果该方法返回true，则表示有线程比当前线程更早地请求获取锁，因此需要等待前驱线程获取并释放锁之后才能继续获取锁。</a>
+</h3>
+</body>
+</html>
